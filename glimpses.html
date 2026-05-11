@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Stories | Card Match Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8BC34A;
+            --primary-dark: #689F38;
+            --accent: #FF5252;
+            --animal-color: #8D4E2D; /* Animal Deck Brown */
+
+            /* Theme Variables (Default Dark) */
+            --bg-color: #051005;
+            --card-bg: #0d240d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0b0a0;
+            --nav-bg: rgba(5, 16, 5, 0.9);
+            --border-color: #1b331b;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #F9FBE7;
+            --card-bg: #ffffff;
+            --text-primary: #1b2e0b;
+            --text-secondary: #4a5d3a;
+            --nav-bg: rgba(249, 251, 231, 0.9);
+            --border-color: #e9f0d8;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background var(--transition), border-bottom var(--transition);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #fff;
+            box-shadow: 0 0 25px rgba(139, 195, 74, 0.4);
+            transform: rotate(-10deg);
+        }
+
+        .theme-toggle-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        /* Header Section */
+        .page-header {
+            padding: 160px 10% 60px;
+            text-align: center;
+        }
+
+        .section-tag {
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .page-title {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -2px;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .page-title em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            background: linear-gradient(to bottom right, var(--text-primary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        /* Video Grid */
+        .video-container {
+            padding: 0 10% 100px;
+        }
+
+        /* Animal Theme Icons */
+        .icon-animal {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            border-radius: 12px;
+            margin-right: 12px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(139, 195, 74, 0.3);
+        }
+
+        .animal-section-title .icon-animal {
+            background: var(--animal-color);
+            box-shadow: 0 4px 10px rgba(141, 78, 45, 0.3);
+        }
+
+        .video-group-title {
+            font-size: 2rem;
+            margin: 60px 0 30px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            letter-spacing: -1px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 360px));
+            gap: 50px;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .video-card {
+            background: transparent;
+            border-radius: 0;
+            overflow: visible;
+            border: none;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            width: 320px;
+            margin: 0 auto;
+        }
+
+        .video-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 310px;
+            height: 670px;
+            background: #000;
+            margin: 0 auto 25px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 20px 50px var(--shadow-color);
+            cursor: pointer;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: -70px; /* Hide YouTube header */
+            left: 0;
+            width: 100%;
+            height: calc(100% + 140px);
+            border: none;
+            pointer-events: none;
+            user-select: none;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        /* Fullscreen adjustments to prevent clipping */
+        .video-wrapper:fullscreen {
+            background: #000;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 100vw !important;
+            height: 100vh !important;
+        }
+
+        .video-wrapper:fullscreen iframe {
+            position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+            height: 100% !important;
+            width: auto !important;
+            aspect-ratio: 9 / 16 !important;
+            margin: 0 auto !important;
+            z-index: 1 !important;
+        }
+
+        .video-wrapper:fullscreen .video-overlay,
+        .video-wrapper:fullscreen .sound-btn,
+        .video-wrapper:fullscreen .fullscreen-btn {
+            z-index: 100 !important;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            transition: background 0.1s steps(1, start);
+            pointer-events: auto;
+        }
+
+        .video-wrapper.playing .video-overlay {
+            background: transparent !important;
+        }
+
+        .video-wrapper.paused .video-overlay {
+            background: rgba(0,0,0,0.3) !important;
+        }
+
+        .play-pause-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            pointer-events: none;
+            z-index: 6;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .video-wrapper.playing .play-pause-icon {
+            opacity: 0;
+            transform: scale(1.2);
+            visibility: hidden;
+        }
+
+        .video-wrapper.paused .play-pause-icon {
+            opacity: 1;
+            transform: scale(1);
+            visibility: visible;
+        }
+
+        .video-wrapper.animal-theme.paused .play-pause-icon {
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .play-pause-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        .video-wrapper.paused .play-pause-icon svg {
+            fill: var(--primary);
+        }
+
+        .video-wrapper.animal-theme.paused .play-pause-icon svg {
+            fill: var(--animal-color);
+        }
+
+        .video-wrapper.animal-theme .play-pause-icon {
+            background: rgba(141, 78, 45, 0.9);
+        }
+
+        .video-wrapper.animal-theme.paused .play-pause-icon {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .sound-btn, .fullscreen-btn {
+            position: absolute;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sound-btn { right: 20px; }
+        .fullscreen-btn { left: 20px; }
+
+        .sound-btn:hover, .fullscreen-btn:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .video-wrapper.animal-theme .sound-btn:hover,
+        .video-wrapper.animal-theme .fullscreen-btn:hover {
+            background: var(--animal-color);
+        }
+
+        .sound-btn svg, .fullscreen-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .video-info {
+            padding: 20px 0;
+            text-align: left;
+            width: 310px;
+            margin: 0 auto;
+        }
+
+        .theme-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 14px;
+            background: rgba(139, 195, 74, 0.15);
+            color: var(--primary);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            border: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .video-card.animal-card .theme-tag {
+            background: rgba(141, 78, 45, 0.15);
+            color: var(--animal-color);
+            border-color: rgba(141, 78, 45, 0.2);
+        }
+
+        .video-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .video-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .watch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.2);
+        }
+
+        .watch-btn:hover {
+            transform: translateX(5px);
+            background: var(--primary-dark);
+            box-shadow: 0 6px 20px rgba(139, 195, 74, 0.3);
+        }
+
+        .video-card.animal-card .watch-btn {
+            background: var(--animal-color);
+            box-shadow: 0 4px 15px rgba(141, 78, 45, 0.2);
+        }
+
+        .video-card.animal-card .watch-btn:hover {
+            background: #6d3b22;
+            box-shadow: 0 6px 20px rgba(141, 78, 45, 0.3);
+        }
+
+        .watch-btn span {
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .watch-btn:hover span {
+            transform: translateX(3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 10%;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .page-title { font-size: 3rem; }
+            nav { padding: 20px; }
+            .video-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">M</div>
+            Card Match Game
+        </a>
+        <button onclick="togglePageTheme()" class="theme-toggle-btn" id="theme-toggle">🌙</button>
+    </nav>
+
+    <header class="page-header">
+        <span class="section-tag">Visual Stories</span>
+        <h1 class="page-title">Experience the <em>Atmosphere.</em></h1>
+        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Explore different visual themes and gameplay styles through immersive video previews.</p>
+    </header>
+
+    <main class="video-container">
+
+
+        <!-- Theme Showcase -->
+        <h2 class="video-group-title"><span class="icon-animal">🎨</span> Visual Themes</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div class="video-overlay">
+                        <div class="play-pause-icon">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="fullscreen-btn" title="Fullscreen">
+                        <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                    </div>
+                    <div class="sound-btn" title="Toggle Sound">
+                        <svg class="sound-icon" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"/></svg>
+                    </div>
+                    <iframe src="https://www.youtube.com/embed/qtkpssIs3pM?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="theme-tag">🌙 Dark Mode</span>
+                    <h3>Midnight Forest</h3>
+                    <p>Experience the serene beauty of our dark theme with smooth animations and organic aesthetics.</p>
+                    <a href="https://www.youtube.com/watch?v=qtkpssIs3pM" target="_blank" class="watch-btn">Watch Now <span>→</span></a>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div class="video-overlay">
+                        <div class="play-pause-icon">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="fullscreen-btn" title="Fullscreen">
+                        <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                    </div>
+                    <div class="sound-btn" title="Toggle Sound">
+                        <svg class="sound-icon" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"/></svg>
+                    </div>
+                    <iframe src="https://www.youtube.com/embed/CZJFvcJLgmc?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="theme-tag">☀️ Light Mode</span>
+                    <h3>Sun-kissed Garden</h3>
+                    <p>A bright and energetic aesthetic for your morning mental workout, featuring clean lines and vibrant colors.</p>
+                    <a href="https://www.youtube.com/watch?v=CZJFvcJLgmc" target="_blank" class="watch-btn">Watch Now <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Showcase -->
+        <h2 class="video-group-title animal-section-title"><span class="icon-animal">🦁</span> Animal Collection</h2>
+        <div class="video-grid">
+            <div class="video-card animal-card">
+                <div class="video-wrapper animal-theme">
+                    <div class="video-overlay">
+                        <div class="play-pause-icon">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="fullscreen-btn" title="Fullscreen">
+                        <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                    </div>
+                    <div class="sound-btn" title="Toggle Sound">
+                        <svg class="sound-icon" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"/></svg>
+                    </div>
+                    <iframe src="https://www.youtube.com/embed/-zuzc9IZMHY?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="theme-tag">🐾 Animal Deck</span>
+                    <h3>Wild Encounters</h3>
+                    <p>Matching nature's finest creatures under the moonlight with our beautifully illustrated animal cards.</p>
+                    <a href="https://www.youtube.com/watch?v=-zuzc9IZMHY" target="_blank" class="watch-btn">Watch Now <span>→</span></a>
+                </div>
+            </div>
+
+            <div class="video-card animal-card">
+                <div class="video-wrapper animal-theme">
+                    <div class="video-overlay">
+                        <div class="play-pause-icon">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="fullscreen-btn" title="Fullscreen">
+                        <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                    </div>
+                    <div class="sound-btn" title="Toggle Sound">
+                        <svg class="sound-icon" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"/></svg>
+                    </div>
+                    <iframe src="https://www.youtube.com/embed/ZIveHDOzNTk?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="theme-tag">🐾 Animal Deck</span>
+                    <h3>Gentle Spirits</h3>
+                    <p>Vibrant animal illustrations in the crisp daylight theme, offering a playful and engaging experience.</p>
+                    <a href="https://www.youtube.com/watch?v=ZIveHDOzNTk" target="_blank" class="watch-btn">Watch Now <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p class="copyright">&copy; 2024 Card Match Game. All rights reserved.</p>
+    </footer>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let players = {};
+
+        function onYouTubeIframeAPIReady() {
+            const iframes = document.querySelectorAll('.video-wrapper iframe');
+            iframes.forEach((iframe, index) => {
+                const id = 'player-' + index;
+                iframe.id = id;
+
+                const wrapper = iframe.closest('.video-wrapper');
+
+                players[id] = new YT.Player(id, {
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': (e) => onPlayerStateChange(e, wrapper)
+                    }
+                });
+
+                wrapper.addEventListener('click', (e) => {
+                    if (e.target.closest('.sound-btn') || e.target.closest('.fullscreen-btn')) return;
+                    togglePlay(id, wrapper);
+                });
+
+                const soundBtn = wrapper.querySelector('.sound-btn');
+                soundBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleSound(id, soundBtn);
+                });
+
+                const fsBtn = wrapper.querySelector('.fullscreen-btn');
+                fsBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleFullscreen(wrapper);
+                });
+            });
+        }
+
+        function toggleFullscreen(wrapper) {
+            if (!document.fullscreenElement) {
+                wrapper.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function onPlayerReady(event) {
+            // Ensure all start paused
+            event.target.pauseVideo();
+            const iframe = event.target.getIframe();
+            const wrapper = iframe.closest('.video-wrapper');
+            wrapper.classList.add('paused');
+            wrapper.classList.remove('playing');
+            const icon = wrapper.querySelector('.play-pause-icon');
+            icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+
+            // Sync sound icon with player state
+            const soundBtn = wrapper.querySelector('.sound-btn');
+            updateSoundIcon(event.target, soundBtn);
+        }
+
+        function onPlayerStateChange(event, wrapper) {
+            const icon = wrapper.querySelector('.play-pause-icon');
+            const id = event.target.getIframe().id;
+
+            if (event.data === YT.PlayerState.ENDED) {
+                event.target.pauseVideo(); // Explicitly pause to avoid phantom playing
+                wrapper.classList.add('paused');
+                wrapper.classList.remove('playing');
+                icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+                event.target.seekTo(0);
+            }
+        }
+
+        function updateSoundIcon(player, btn) {
+            const icon = btn.querySelector('.sound-icon');
+            if (player.isMuted()) {
+                // SOUND OFF (Slash icon)
+                icon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM4.33 2.89L2.27 4.95 6.31 9H3v6h4l5 5V13.89l7.41 7.41 2.06-2.06L4.33 2.89zM10 17.57L7.43 15H5v-4h1.43l3.57 3.57v3zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zm-7-8l-2.18 2.18L12 8.36V4z"/>';
+            } else {
+                // SOUND ON (Standard icon)
+                icon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+            }
+        }
+
+        function togglePlay(id, wrapper) {
+            const player = players[id];
+            if (!player || typeof player.getPlayerState !== 'function') return;
+
+            const state = player.getPlayerState();
+            const icon = wrapper.querySelector('.play-pause-icon');
+
+            if (state === 1) { // YT.PlayerState.PLAYING
+                player.pauseVideo();
+                wrapper.classList.add('paused');
+                wrapper.classList.remove('playing');
+                icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+            } else {
+                player.playVideo();
+                wrapper.classList.remove('paused');
+                wrapper.classList.add('playing');
+                icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+            }
+        }
+
+        function toggleSound(id, btn) {
+            const player = players[id];
+            if (player.isMuted()) {
+                player.unMute();
+            } else {
+                player.mute();
+            }
+            // Small delay to ensure API state is updated before icon refresh
+            setTimeout(() => updateSoundIcon(player, btn), 100);
+        }
+
+        function togglePageTheme() {
+            const html = document.documentElement;
+            const btn = document.getElementById('theme-toggle');
+
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+                btn.innerHTML = '🌙';
+            } else {
+                html.setAttribute('data-theme', 'light');
+                btn.innerHTML = '☀️';
+            }
+        }
+    </script>
+
+</body>
+</html>
