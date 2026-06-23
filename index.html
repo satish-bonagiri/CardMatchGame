@@ -415,7 +415,12 @@
             <div class="hero-visual">
                 <div class="phone-mockup">
                     <div class="phone-screen">
-                        <img id="hero-img" src="dark%20theme%20screenshots/main%20menu%20screen.png" alt="App Main Menu">
+                        <img id="hero-img"
+                             src="dark%20theme%20screenshots/main%20menu%20screen.png"
+                             alt="Card Match Game App Main Menu Preview"
+                             width="1080"
+                             height="2340"
+                             style="aspect-ratio: 1080 / 2340; max-width: 320px; width: 100%; height: auto; background-color: #1e1e1e; display: block;">
                     </div>
                 </div>
             </div>
@@ -536,10 +541,6 @@
         // Run once on load
         reveal();
 
-        // Handle Image Fallback
-        document.getElementById('hero-img').addEventListener('error', function() {
-            this.src = 'https://via.placeholder.com/320x650?text=App+Preview';
-        });
     </script>
 
 </body>
