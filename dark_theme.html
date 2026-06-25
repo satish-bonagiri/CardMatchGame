@@ -67,11 +67,57 @@
         nav h1 {
             font-size: 1rem;
             font-weight: 800;
-            margin-bottom: 50px;
             color: var(--accent-color);
             text-transform: uppercase;
             letter-spacing: 3px;
+        }
+
+        /* Theme-aware back navigation */
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 50px;
             padding-left: 10px;
+        }
+
+        .back-navigation {
+            width: 42px;
+            height: 42px;
+            display: inline-grid;
+            place-items: center;
+            flex: 0 0 auto;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--card-bg);
+            color: var(--accent-color);
+            text-decoration: none;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+
+        .back-navigation:hover,
+        .back-navigation:focus-visible {
+            background: var(--accent-glow);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateX(-2px);
+            outline: none;
+        }
+
+        .back-navigation svg {
+            width: 21px;
+            height: 21px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.25;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .nav-brand h1 {
+            margin: 0;
+            padding-left: 0;
         }
 
         nav ul {
@@ -413,7 +459,10 @@
         @media (max-width: 768px) {
             body { flex-direction: column; }
             nav { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); padding: 30px 20px; }
-            nav h1 { margin-bottom: 20px; }
+            .nav-brand { gap: 12px; margin-bottom: 20px; }
+            .back-navigation { width: 40px; height: 40px; border-radius: 12px; }
+            .back-navigation svg { width: 20px; height: 20px; }
+            .nav-brand h1 { margin-bottom: 0; }
             main { padding: 40px 20px; }
             header { margin-bottom: 60px; }
         }
@@ -422,7 +471,10 @@
 <body>
 
 <nav>
-    <h1>Card Match Game</h1>
+    <div class="nav-brand">
+        <a class="back-navigation" href="index.html" aria-label="Back to home" title="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5M8.5 12H20" /></svg></a>
+        <h1>Card Match Game</h1>
+    </div>
     <ul>
         <li><a href="#start-screen" class="active">1. Start Screen</a></li>
         <li><a href="#game-setup">2. Game Setup</a></li>
