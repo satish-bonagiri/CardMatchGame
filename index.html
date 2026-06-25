@@ -122,6 +122,58 @@
             border-color: var(--primary);
         }
 
+
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            right: 32px;
+            bottom: 32px;
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            background: var(--card-bg);
+            color: var(--accent-color, var(--primary));
+            box-shadow: 0 12px 28px var(--shadow-color, rgba(0, 0, 0, 0.18));
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(16px);
+            transition: var(--transition);
+            z-index: 1500;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover,
+        .scroll-to-top:focus-visible {
+            background: var(--accent-color, var(--primary));
+            border-color: var(--accent-color, var(--primary));
+            color: #fff;
+            outline: none;
+            transform: translateY(-4px);
+        }
+
+        .scroll-to-top svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-to-top {
+                right: 20px;
+                bottom: 20px;
+                width: 46px;
+                height: 46px;
+            }
+        }
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -493,12 +545,31 @@
         </section>
     </main>
 
+
+<button class="scroll-to-top" id="scroll-to-top" type="button" aria-label="Scroll to top" title="Scroll to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l-7 7 1.4 1.4 4.6-4.6V20h2V7.8l4.6 4.6L19 11z"/></svg>
+</button>
     <footer>
         <div style="height: 1px; background: var(--border-color); width: 100%; margin-bottom: 40px;"></div>
         <p class="copyright">&copy; 2024 Card Match Game. All rights reserved.</p>
     </footer>
 
     <script>
+
+        // Scroll-to-top control
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+
+        function updateScrollToTopVisibility() {
+            scrollToTopButton.classList.toggle('visible', window.scrollY > 360);
+        }
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', updateScrollToTopVisibility, { passive: true });
+        updateScrollToTopVisibility();
+
         // Theme Toggle Logic
         function togglePageTheme() {
             const html = document.documentElement;

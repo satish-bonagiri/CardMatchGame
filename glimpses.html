@@ -93,21 +93,58 @@
             transform: rotate(-10deg);
         }
 
-        .theme-toggle-btn {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--card-bg);
+
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            right: 32px;
+            bottom: 32px;
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
             border: 1px solid var(--border-color);
-            color: var(--text-primary);
+            border-radius: 50%;
+            background: var(--card-bg);
+            color: var(--accent-color, var(--primary));
+            box-shadow: 0 12px 28px var(--shadow-color, rgba(0, 0, 0, 0.18));
             cursor: pointer;
-            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(16px);
             transition: var(--transition);
+            z-index: 1500;
         }
 
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover,
+        .scroll-to-top:focus-visible {
+            background: var(--accent-color, var(--primary));
+            border-color: var(--accent-color, var(--primary));
+            color: #fff;
+            outline: none;
+            transform: translateY(-4px);
+        }
+
+        .scroll-to-top svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-to-top {
+                right: 20px;
+                bottom: 20px;
+                width: 46px;
+                height: 46px;
+            }
+        }
         /* Header Section */
         .page-header {
             padding: 160px 10% 60px;
@@ -470,9 +507,12 @@
             <div class="logo-icon">M</div>
             Card Match Game
         </a>
-        <button onclick="togglePageTheme()" class="theme-toggle-btn" id="theme-toggle">🌙</button>
     </nav>
 
+
+<button class="scroll-to-top" id="scroll-to-top" type="button" aria-label="Scroll to top" title="Scroll to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l-7 7 1.4 1.4 4.6-4.6V20h2V7.8l4.6 4.6L19 11z"/></svg>
+</button>
     <header class="page-header">
         <span class="section-tag">Visual Stories</span>
         <h1 class="page-title">Experience the <em>Atmosphere.</em></h1>
@@ -675,6 +715,21 @@
             }
         }
 
+
+        // Scroll-to-top control
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+
+        function updateScrollToTopVisibility() {
+            scrollToTopButton.classList.toggle('visible', window.scrollY > 360);
+        }
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', updateScrollToTopVisibility, { passive: true });
+        updateScrollToTopVisibility();
+
         function togglePlay(id, wrapper) {
             const player = players[id];
             if (!player || typeof player.getPlayerState !== 'function') return;
@@ -706,18 +761,7 @@
             setTimeout(() => updateSoundIcon(player, btn), 100);
         }
 
-        function togglePageTheme() {
-            const html = document.documentElement;
-            const btn = document.getElementById('theme-toggle');
 
-            if (html.getAttribute('data-theme') === 'light') {
-                html.removeAttribute('data-theme');
-                btn.innerHTML = '🌙';
-            } else {
-                html.setAttribute('data-theme', 'light');
-                btn.innerHTML = '☀️';
-            }
-        }
     </script>
 
 </body>
