@@ -155,6 +155,19 @@
             stroke-width: 2.25;
         }
 
+        /* Dark-theme icon: a clean filled crescent, matching the 🌙 visual language. */
+        .theme-toggle-btn .theme-icon--moon .moon-body {
+            fill: currentColor;
+            stroke: none;
+        }
+
+        .theme-toggle-btn:focus-visible,
+        .menu-toggle:focus-visible,
+        .menu-close:focus-visible {
+            outline: 3px solid color-mix(in srgb, var(--primary) 60%, transparent);
+            outline-offset: 3px;
+        }
+
 
         /* Scroll to Top */
         .scroll-to-top {
@@ -649,13 +662,13 @@
         </a>
 
         <div class="desktop-nav-actions">
-            <button class="theme-toggle-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode"><svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg></button>
+            <button class="theme-toggle-btn" id="theme-toggle" data-theme-toggle type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode"><svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="moon-body" transform="translate(24 0) scale(-1 1)" d="M20.7 15.25A8.9 8.9 0 0 1 8.75 3.3 9.15 9.15 0 1 0 20.7 15.25Z"/></svg></button>
             <a href="glimpses.html" class="btn-action nav-link-btn">Video Gallery</a>
             <a href="#themes" class="btn-action nav-link-btn">Explore Themes</a>
         </div>
 
         <div class="mobile-header-actions">
-            <button class="theme-toggle-btn" id="mobile-header-theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode"><svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg></button>
+            <button class="theme-toggle-btn" id="mobile-header-theme-toggle" data-theme-toggle type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode"><svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="moon-body" transform="translate(24 0) scale(-1 1)" d="M20.7 15.25A8.9 8.9 0 0 1 8.75 3.3 9.15 9.15 0 1 0 20.7 15.25Z"/></svg></button>
             <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
                 <span></span><span></span><span></span>
             </button>
@@ -778,86 +791,95 @@
 
     <script>
 
-        // Scroll-to-top control
-        const scrollToTopButton = document.getElementById('scroll-to-top');
+        // Theme toggle: deliberately self-contained so preview restrictions or other page scripts
+        // cannot block the visual theme switch.
+        (function () {
+            const THEME_STORAGE_KEY = 'cardMatchTheme';
+            const root = document.documentElement;
 
-        function updateScrollToTopVisibility() {
-            scrollToTopButton.classList.toggle('visible', window.scrollY > 360);
-        }
+            const sunIcon = '<svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle class="sun-core" cx="12" cy="12" r="4.2"/><path class="sun-ray" d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.28 5.28l1.42 1.42M17.3 17.3l1.42 1.42M5.28 18.72l1.42-1.42M17.3 6.7l1.42-1.42"/></svg>';
+            const moonIcon = '<svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="moon-body" transform="translate(24 0) scale(-1 1)" d="M20 15.6A8.85 8.85 0 0 1 8.4 4 8.85 8.85 0 1 0 20 15.6Z"/></svg>';
 
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        window.addEventListener('scroll', updateScrollToTopVisibility, { passive: true });
-        updateScrollToTopVisibility();
-
-        // Shared theme preference used by the Glimpses page as well.
-        const THEME_STORAGE_KEY = 'cardMatchTheme';
-
-        function getSavedTheme() {
-            try {
-                return localStorage.getItem(THEME_STORAGE_KEY) === 'light' ? 'light' : 'dark';
-            } catch (error) {
-                return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-            }
-        }
-
-        function applyPageTheme(theme, persist = false) {
-            const isLightTheme = theme === 'light';
-            const html = document.documentElement;
-            const btn = document.getElementById('theme-toggle');
-            const heroImg = document.getElementById('hero-img');
-
-            if (isLightTheme) {
-                html.setAttribute('data-theme', 'light');
-            } else {
-                html.removeAttribute('data-theme');
-            }
-            const themeIcon = isLightTheme
-                ? '<svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle class="sun-core" cx="12" cy="12" r="4.2"/><path class="sun-ray" d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.28 5.28l1.42 1.42M17.3 17.3l1.42 1.42M5.28 18.72l1.42-1.42M17.3 6.7l1.42-1.42"/></svg>'
-                : '<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>';
-            if (btn) btn.innerHTML = themeIcon;
-            const mobileHeaderThemeButton = document.getElementById('mobile-header-theme-toggle');
-            if (mobileHeaderThemeButton) mobileHeaderThemeButton.innerHTML = themeIcon;
-            if (heroImg) {
-                heroImg.src = isLightTheme
-                    ? 'light-theme-screenshots/main-menu-screen.png'
-                    : 'dark-theme-screenshots/main-menu-screen.png';
+            function currentTheme() {
+                return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
             }
 
-            if (persist) {
-                try {
-                    localStorage.setItem(THEME_STORAGE_KEY, theme);
-                } catch (error) {
-                    // The visible theme still changes if browser storage is unavailable.
+            function paintTheme(theme, shouldPersist) {
+                const isLight = theme === 'light';
+                if (isLight) {
+                    root.setAttribute('data-theme', 'light');
+                } else {
+                    root.removeAttribute('data-theme');
+                }
+
+                const heroImage = document.getElementById('hero-img');
+                if (heroImage) {
+                    heroImage.src = isLight
+                        ? 'light-theme-screenshots/main-menu-screen.png'
+                        : 'dark-theme-screenshots/main-menu-screen.png';
+                }
+
+                const label = isLight ? 'Switch to dark theme' : 'Switch to light theme';
+                document.querySelectorAll('[data-theme-toggle]').forEach(function (button) {
+                    button.innerHTML = isLight ? sunIcon : moonIcon;
+                    button.setAttribute('aria-label', label);
+                    button.setAttribute('title', label);
+                    button.setAttribute('aria-pressed', String(isLight));
+                });
+
+                if (shouldPersist) {
+                    try { localStorage.setItem(THEME_STORAGE_KEY, isLight ? 'light' : 'dark'); } catch (ignore) {}
                 }
             }
 
-            reveal();
+            function toggleTheme() {
+                paintTheme(currentTheme() === 'light' ? 'dark' : 'light', true);
+            }
+
+            // Expose a tiny fallback for preview renderers that handle button events differently.
+            window.cardMatchToggleTheme = toggleTheme;
+
+            // Event delegation remains active even if a preview tool re-renders button contents.
+            document.addEventListener('click', function (event) {
+                const toggle = event.target.closest ? event.target.closest('[data-theme-toggle]') : null;
+                if (!toggle) return;
+                event.preventDefault();
+                toggleTheme();
+            });
+
+            let saved = 'dark';
+            try { saved = localStorage.getItem(THEME_STORAGE_KEY) === 'light' ? 'light' : 'dark'; } catch (ignore) {}
+            paintTheme(saved, false);
+
+            window.addEventListener('storage', function (event) {
+                if (event.key === THEME_STORAGE_KEY) {
+                    paintTheme(event.newValue === 'light' ? 'light' : 'dark', false);
+                }
+            });
+        }());
+
+
+        // Scroll-to-top control
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+
+        if (scrollToTopButton) {
+            function updateScrollToTopVisibility() {
+                scrollToTopButton.classList.toggle('visible', window.scrollY > 360);
+            }
+
+            scrollToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            window.addEventListener('scroll', updateScrollToTopVisibility, { passive: true });
+            updateScrollToTopVisibility();
         }
-
-        function togglePageTheme() {
-            const nextTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-            applyPageTheme(nextTheme, true);
-        }
-
-        // Use an event listener rather than inline markup so the control works in local preview panes.
-        const themeToggleButton = document.getElementById('theme-toggle');
-        if (themeToggleButton) {
-            themeToggleButton.addEventListener('click', togglePageTheme);
-        }
-
-        // Apply any theme chosen previously before navigating away from the homepage.
-        applyPageTheme(getSavedTheme());
-
 
         // Mobile drawer navigation. Desktop controls remain unchanged.
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuBackdrop = document.getElementById('menu-backdrop');
-        const mobileHeaderThemeToggle = document.getElementById('mobile-header-theme-toggle');
 
         function setMenuOpen(isOpen) {
             document.body.classList.toggle('menu-open', isOpen);
@@ -873,7 +895,6 @@
         if (menuClose) menuClose.addEventListener('click', () => setMenuOpen(false));
         if (menuBackdrop) menuBackdrop.addEventListener('click', () => setMenuOpen(false));
         if (mobileMenu) mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuOpen(false)));
-        if (mobileHeaderThemeToggle) mobileHeaderThemeToggle.addEventListener('click', togglePageTheme);
         window.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMenuOpen(false); });
 
         // Scroll Reveal Logic
