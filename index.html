@@ -134,6 +134,28 @@
         }
 
 
+        .theme-toggle-btn .theme-icon {
+            width: 20px;
+            height: 20px;
+            display: block;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Light-theme icon: a stronger, filled sun for clearer contrast. */
+        .theme-toggle-btn .theme-icon--sun .sun-core {
+            fill: currentColor;
+            stroke: none;
+        }
+
+        .theme-toggle-btn .theme-icon--sun .sun-ray {
+            stroke-width: 2.25;
+        }
+
+
         /* Scroll to Top */
         .scroll-to-top {
             position: fixed;
@@ -627,13 +649,13 @@
         </a>
 
         <div class="desktop-nav-actions">
-            <button class="theme-toggle-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode">🌙</button>
+            <button class="theme-toggle-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode"><svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg></button>
             <a href="glimpses.html" class="btn-action nav-link-btn">Video Gallery</a>
             <a href="#themes" class="btn-action nav-link-btn">Explore Themes</a>
         </div>
 
         <div class="mobile-header-actions">
-            <button class="theme-toggle-btn" id="mobile-header-theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode">🌙</button>
+            <button class="theme-toggle-btn" id="mobile-header-theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode"><svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg></button>
             <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
                 <span></span><span></span><span></span>
             </button>
@@ -647,6 +669,7 @@
             <button class="menu-close" id="menu-close" type="button" aria-label="Close navigation menu">×</button>
         </div>
         <div class="mobile-menu-links">
+            <a href="#top">Home <span aria-hidden="true">→</span></a>
             <a href="#themes">Explore Themes <span aria-hidden="true">→</span></a>
             <a href="glimpses.html">Video Gallery <span aria-hidden="true">→</span></a>
         </div>
@@ -791,9 +814,12 @@
             } else {
                 html.removeAttribute('data-theme');
             }
-            if (btn) btn.textContent = isLightTheme ? '☀️' : '🌙';
+            const themeIcon = isLightTheme
+                ? '<svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle class="sun-core" cx="12" cy="12" r="4.2"/><path class="sun-ray" d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.28 5.28l1.42 1.42M17.3 17.3l1.42 1.42M5.28 18.72l1.42-1.42M17.3 6.7l1.42-1.42"/></svg>'
+                : '<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>';
+            if (btn) btn.innerHTML = themeIcon;
             const mobileHeaderThemeButton = document.getElementById('mobile-header-theme-toggle');
-            if (mobileHeaderThemeButton) mobileHeaderThemeButton.textContent = isLightTheme ? '☀️' : '🌙';
+            if (mobileHeaderThemeButton) mobileHeaderThemeButton.innerHTML = themeIcon;
             if (heroImg) {
                 heroImg.src = isLightTheme
                     ? 'light-theme-screenshots/main-menu-screen.png'
