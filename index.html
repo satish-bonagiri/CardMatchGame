@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Match Game | App Showcase</title>
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('cardMatchTheme') === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (error) {
+                // Leave the default dark theme in place when storage is unavailable.
+            }
+        }());
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
@@ -447,7 +458,7 @@
             Card Match Game
         </div>
         <div style="display: flex; gap: 15px; align-items: center;">
-            <button onclick="togglePageTheme()" class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Mode">🌙</button>
+            <button class="theme-toggle-btn" id="theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode">🌙</button>
             <a href="glimpses.html" class="btn-action" style="font-size: 0.8rem; padding: 12px 25px; border: 1px solid var(--border-color); background: transparent; color: var(--text-primary);">Video Gallery</a>
             <a href="#themes" class="btn-action" style="font-size: 0.8rem; padding: 12px 25px; border: 1px solid var(--border-color); background: transparent; color: var(--text-primary);">Explore Themes</a>
         </div>
@@ -570,25 +581,59 @@
         window.addEventListener('scroll', updateScrollToTopVisibility, { passive: true });
         updateScrollToTopVisibility();
 
-        // Theme Toggle Logic
-        function togglePageTheme() {
+        // Shared theme preference used by the Glimpses page as well.
+        const THEME_STORAGE_KEY = 'cardMatchTheme';
+
+        function getSavedTheme() {
+            try {
+                return localStorage.getItem(THEME_STORAGE_KEY) === 'light' ? 'light' : 'dark';
+            } catch (error) {
+                return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            }
+        }
+
+        function applyPageTheme(theme, persist = false) {
+            const isLightTheme = theme === 'light';
             const html = document.documentElement;
             const btn = document.getElementById('theme-toggle');
             const heroImg = document.getElementById('hero-img');
 
-            if (html.getAttribute('data-theme') === 'light') {
-                html.removeAttribute('data-theme');
-                btn.innerHTML = '🌙';
-                heroImg.src = 'dark-theme-screenshots/main-menu-screen.png';
-            } else {
+            if (isLightTheme) {
                 html.setAttribute('data-theme', 'light');
-                btn.innerHTML = '☀️';
-                heroImg.src = 'light-theme-screenshots/main-menu-screen.png';
+            } else {
+                html.removeAttribute('data-theme');
+            }
+            if (btn) btn.textContent = isLightTheme ? '☀️' : '🌙';
+            if (heroImg) {
+                heroImg.src = isLightTheme
+                    ? 'light-theme-screenshots/main-menu-screen.png'
+                    : 'dark-theme-screenshots/main-menu-screen.png';
             }
 
-            // Re-trigger reveal to ensure visibility after theme change
+            if (persist) {
+                try {
+                    localStorage.setItem(THEME_STORAGE_KEY, theme);
+                } catch (error) {
+                    // The visible theme still changes if browser storage is unavailable.
+                }
+            }
+
             reveal();
         }
+
+        function togglePageTheme() {
+            const nextTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            applyPageTheme(nextTheme, true);
+        }
+
+        // Use an event listener rather than inline markup so the control works in local preview panes.
+        const themeToggleButton = document.getElementById('theme-toggle');
+        if (themeToggleButton) {
+            themeToggleButton.addEventListener('click', togglePageTheme);
+        }
+
+        // Apply any theme chosen previously before navigating away from the homepage.
+        applyPageTheme(getSavedTheme());
 
         // Scroll Reveal Logic
         window.addEventListener('scroll', reveal);

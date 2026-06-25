@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visual Stories | Card Match Game</title>
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('cardMatchTheme') === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (error) {
+                // Leave the default dark theme in place when storage is unavailable.
+            }
+        }());
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
@@ -630,6 +641,29 @@
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
+        const THEME_STORAGE_KEY = 'cardMatchTheme';
+
+        function getSavedTheme() {
+            try {
+                return localStorage.getItem(THEME_STORAGE_KEY) === 'light' ? 'light' : 'dark';
+            } catch (error) {
+                return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            }
+        }
+
+        function applySavedTheme() {
+            document.documentElement.toggleAttribute('data-theme', getSavedTheme() === 'light');
+        }
+
+        // Match the preference selected on index.html whenever this page loads or returns to view.
+        applySavedTheme();
+        window.addEventListener('storage', (event) => {
+            if (event.key === THEME_STORAGE_KEY) applySavedTheme();
+        });
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) applySavedTheme();
+        });
+
         let players = {};
 
         function onYouTubeIframeAPIReady() {
