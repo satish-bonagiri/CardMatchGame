@@ -604,6 +604,47 @@
 
     
         /* Respect user motion preferences. */
+
+
+        /* Accessible video controls */
+        .video-overlay {
+            padding: 0;
+            border: 0;
+            color: #fff;
+            font: inherit;
+        }
+
+        .sound-btn,
+        .fullscreen-btn {
+            padding: 0;
+            color: #fff;
+            font: inherit;
+            appearance: none;
+        }
+
+        .video-overlay:focus-visible,
+        .sound-btn:focus-visible,
+        .fullscreen-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+
+        .video-overlay:focus-visible .play-pause-icon {
+            box-shadow: 0 0 0 5px rgba(139, 195, 74, 0.65), 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
@@ -659,47 +700,47 @@
         <div class="video-grid">
             <div class="video-card">
                 <div class="video-wrapper">
-                    <div class="video-overlay">
-                        <div class="play-pause-icon">
+                    <button class="video-overlay" type="button" aria-label="Play Midnight Forest preview" aria-pressed="false" title="Play Midnight Forest preview">
+                        <span class="play-pause-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
-                    <div class="fullscreen-btn" title="Fullscreen">
+                        </span>
+                    </button>
+                    <button class="fullscreen-btn" type="button" aria-label="Enter fullscreen for Midnight Forest preview" title="Enter fullscreen">
                         <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                    </div>
-                    <div class="sound-btn" title="Toggle Sound">
+                    </button>
+                    <button class="sound-btn" type="button" aria-label="Unmute Midnight Forest preview" aria-pressed="false" title="Unmute">
                         <svg class="sound-icon" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"/></svg>
-                    </div>
-                    <iframe src="https://www.youtube.com/embed/qtkpssIs3pM?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </button>
+                    <iframe title="Midnight Forest Card Match Game preview" loading="lazy" src="https://www.youtube.com/embed/qtkpssIs3pM?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
                     <span class="theme-tag">🌙 Dark Mode</span>
                     <h3>Midnight Forest</h3>
                     <p>Experience the serene beauty of our dark theme with smooth animations and organic aesthetics.</p>
-                    <a href="https://www.youtube.com/watch?v=qtkpssIs3pM" target="_blank" class="watch-btn">Watch Now <span>→</span></a>
+                    <a href="https://www.youtube.com/watch?v=qtkpssIs3pM" target="_blank" rel="noopener noreferrer" class="watch-btn">Watch Now <span>→</span></a>
                 </div>
             </div>
 
             <div class="video-card">
                 <div class="video-wrapper">
-                    <div class="video-overlay">
-                        <div class="play-pause-icon">
+                    <button class="video-overlay" type="button" aria-label="Play Sun-kissed Garden preview" aria-pressed="false" title="Play Sun-kissed Garden preview">
+                        <span class="play-pause-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
-                    <div class="fullscreen-btn" title="Fullscreen">
+                        </span>
+                    </button>
+                    <button class="fullscreen-btn" type="button" aria-label="Enter fullscreen for Sun-kissed Garden preview" title="Enter fullscreen">
                         <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                    </div>
-                    <div class="sound-btn" title="Toggle Sound">
+                    </button>
+                    <button class="sound-btn" type="button" aria-label="Unmute Sun-kissed Garden preview" aria-pressed="false" title="Unmute">
                         <svg class="sound-icon" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"/></svg>
-                    </div>
-                    <iframe src="https://www.youtube.com/embed/CZJFvcJLgmc?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </button>
+                    <iframe title="Sun-kissed Garden Card Match Game preview" loading="lazy" src="https://www.youtube.com/embed/CZJFvcJLgmc?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
                     <span class="theme-tag">☀️ Light Mode</span>
                     <h3>Sun-kissed Garden</h3>
                     <p>A bright and energetic aesthetic for your morning mental workout, featuring clean lines and vibrant colors.</p>
-                    <a href="https://www.youtube.com/watch?v=CZJFvcJLgmc" target="_blank" class="watch-btn">Watch Now <span>→</span></a>
+                    <a href="https://www.youtube.com/watch?v=CZJFvcJLgmc" target="_blank" rel="noopener noreferrer" class="watch-btn">Watch Now <span>→</span></a>
                 </div>
             </div>
         </div>
@@ -709,47 +750,47 @@
         <div class="video-grid">
             <div class="video-card animal-card">
                 <div class="video-wrapper animal-theme">
-                    <div class="video-overlay">
-                        <div class="play-pause-icon">
+                    <button class="video-overlay" type="button" aria-label="Play Wild Encounters preview" aria-pressed="false" title="Play Wild Encounters preview">
+                        <span class="play-pause-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
-                    <div class="fullscreen-btn" title="Fullscreen">
+                        </span>
+                    </button>
+                    <button class="fullscreen-btn" type="button" aria-label="Enter fullscreen for Wild Encounters preview" title="Enter fullscreen">
                         <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                    </div>
-                    <div class="sound-btn" title="Toggle Sound">
+                    </button>
+                    <button class="sound-btn" type="button" aria-label="Unmute Wild Encounters preview" aria-pressed="false" title="Unmute">
                         <svg class="sound-icon" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"/></svg>
-                    </div>
-                    <iframe src="https://www.youtube.com/embed/-zuzc9IZMHY?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </button>
+                    <iframe title="Wild Encounters Card Match Game preview" loading="lazy" src="https://www.youtube.com/embed/-zuzc9IZMHY?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
                     <span class="theme-tag">🐾 Animal Deck</span>
                     <h3>Wild Encounters</h3>
                     <p>Matching nature's finest creatures under the moonlight with our beautifully illustrated animal cards.</p>
-                    <a href="https://www.youtube.com/watch?v=-zuzc9IZMHY" target="_blank" class="watch-btn">Watch Now <span>→</span></a>
+                    <a href="https://www.youtube.com/watch?v=-zuzc9IZMHY" target="_blank" rel="noopener noreferrer" class="watch-btn">Watch Now <span>→</span></a>
                 </div>
             </div>
 
             <div class="video-card animal-card">
                 <div class="video-wrapper animal-theme">
-                    <div class="video-overlay">
-                        <div class="play-pause-icon">
+                    <button class="video-overlay" type="button" aria-label="Play Gentle Spirits preview" aria-pressed="false" title="Play Gentle Spirits preview">
+                        <span class="play-pause-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
-                    <div class="fullscreen-btn" title="Fullscreen">
+                        </span>
+                    </button>
+                    <button class="fullscreen-btn" type="button" aria-label="Enter fullscreen for Gentle Spirits preview" title="Enter fullscreen">
                         <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                    </div>
-                    <div class="sound-btn" title="Toggle Sound">
+                    </button>
+                    <button class="sound-btn" type="button" aria-label="Unmute Gentle Spirits preview" aria-pressed="false" title="Unmute">
                         <svg class="sound-icon" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"/></svg>
-                    </div>
-                    <iframe src="https://www.youtube.com/embed/ZIveHDOzNTk?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </button>
+                    <iframe title="Gentle Spirits Card Match Game preview" loading="lazy" src="https://www.youtube.com/embed/ZIveHDOzNTk?enablejsapi=1&autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
                     <span class="theme-tag">🐾 Animal Deck</span>
                     <h3>Gentle Spirits</h3>
                     <p>Vibrant animal illustrations in the crisp daylight theme, offering a playful and engaging experience.</p>
-                    <a href="https://www.youtube.com/watch?v=ZIveHDOzNTk" target="_blank" class="watch-btn">Watch Now <span>→</span></a>
+                    <a href="https://www.youtube.com/watch?v=ZIveHDOzNTk" target="_blank" rel="noopener noreferrer" class="watch-btn">Watch Now <span>→</span></a>
                 </div>
             </div>
         </div>
@@ -803,24 +844,54 @@
                     }
                 });
 
-                wrapper.addEventListener('click', (e) => {
-                    if (e.target.closest('.sound-btn') || e.target.closest('.fullscreen-btn')) return;
+                const playButton = wrapper.querySelector('.video-overlay');
+                playButton.addEventListener('click', () => {
                     togglePlay(id, wrapper);
                 });
 
                 const soundBtn = wrapper.querySelector('.sound-btn');
-                soundBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
+                soundBtn.addEventListener('click', () => {
                     toggleSound(id, soundBtn);
                 });
 
                 const fsBtn = wrapper.querySelector('.fullscreen-btn');
-                fsBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
+                fsBtn.addEventListener('click', () => {
                     toggleFullscreen(wrapper);
                 });
             });
         }
+
+        function getVideoTitle(wrapper) {
+            return wrapper.closest('.video-card').querySelector('.video-info h3').textContent.trim();
+        }
+
+        function setPlaybackState(wrapper, isPlaying) {
+            const title = getVideoTitle(wrapper);
+            const playButton = wrapper.querySelector('.video-overlay');
+            const icon = wrapper.querySelector('.play-pause-icon');
+
+            wrapper.classList.toggle('playing', isPlaying);
+            wrapper.classList.toggle('paused', !isPlaying);
+            playButton.setAttribute('aria-pressed', String(isPlaying));
+            playButton.setAttribute('aria-label', `${isPlaying ? 'Pause' : 'Play'} ${title} preview`);
+            playButton.title = `${isPlaying ? 'Pause' : 'Play'} ${title} preview`;
+            icon.innerHTML = isPlaying
+                ? '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>'
+                : '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+        }
+
+        function updateFullscreenLabels() {
+            const isFullscreen = Boolean(document.fullscreenElement);
+            document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+                const button = wrapper.querySelector('.fullscreen-btn');
+                const title = getVideoTitle(wrapper);
+                const action = isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen';
+                button.setAttribute('aria-label', `${action} for ${title} preview`);
+                button.title = action;
+            });
+        }
+
+        document.addEventListener('fullscreenchange', updateFullscreenLabels);
 
         function toggleFullscreen(wrapper) {
             if (!document.fullscreenElement) {
@@ -837,10 +908,7 @@
             event.target.pauseVideo();
             const iframe = event.target.getIframe();
             const wrapper = iframe.closest('.video-wrapper');
-            wrapper.classList.add('paused');
-            wrapper.classList.remove('playing');
-            const icon = wrapper.querySelector('.play-pause-icon');
-            icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+            setPlaybackState(wrapper, false);
 
             // Sync sound icon with player state
             const soundBtn = wrapper.querySelector('.sound-btn');
@@ -848,15 +916,14 @@
         }
 
         function onPlayerStateChange(event, wrapper) {
-            const icon = wrapper.querySelector('.play-pause-icon');
-            const id = event.target.getIframe().id;
-
             if (event.data === YT.PlayerState.ENDED) {
                 event.target.pauseVideo(); // Explicitly pause to avoid phantom playing
-                wrapper.classList.add('paused');
-                wrapper.classList.remove('playing');
-                icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
                 event.target.seekTo(0);
+                setPlaybackState(wrapper, false);
+            } else if (event.data === YT.PlayerState.PLAYING) {
+                setPlaybackState(wrapper, true);
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.CUED) {
+                setPlaybackState(wrapper, false);
             }
         }
 
@@ -869,6 +936,12 @@
                 // SOUND ON (Standard icon)
                 icon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
             }
+
+            const title = getVideoTitle(btn.closest('.video-wrapper'));
+            const isSoundOn = !player.isMuted();
+            btn.setAttribute('aria-pressed', String(isSoundOn));
+            btn.setAttribute('aria-label', `${isSoundOn ? 'Mute' : 'Unmute'} ${title} preview`);
+            btn.title = isSoundOn ? 'Mute' : 'Unmute';
         }
 
 
@@ -890,19 +963,12 @@
             const player = players[id];
             if (!player || typeof player.getPlayerState !== 'function') return;
 
-            const state = player.getPlayerState();
-            const icon = wrapper.querySelector('.play-pause-icon');
-
-            if (state === 1) { // YT.PlayerState.PLAYING
+            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
                 player.pauseVideo();
-                wrapper.classList.add('paused');
-                wrapper.classList.remove('playing');
-                icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+                setPlaybackState(wrapper, false);
             } else {
                 player.playVideo();
-                wrapper.classList.remove('paused');
-                wrapper.classList.add('playing');
-                icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+                setPlaybackState(wrapper, true);
             }
         }
 
