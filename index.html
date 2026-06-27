@@ -695,6 +695,53 @@
             }
         }
 
+
+        /* Hero button variants */
+        .btn-hero-primary {
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.3);
+        }
+
+        .btn-hero-secondary {
+            padding: 22px 40px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            box-shadow: 0 0 25px rgba(139, 195, 74, 0.15);
+        }
+
+        /* Hero phone image sizing */
+        .hero-phone-img {
+            aspect-ratio: 1080 / 2340;
+            max-width: 320px;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Features section alignment */
+        .features-centered {
+            text-align: center;
+        }
+
+        /* Feature grid spacing */
+        .feature-grid-spaced {
+            text-align: left;
+            margin-top: 60px;
+        }
+
+        /* Feature icon colour and spacing */
+        .feature-icon {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        /* Footer divider rule */
+        .footer-divider {
+            height: 1px;
+            background: var(--border-color);
+            width: 100%;
+            margin-bottom: 40px;
+        }
     </style>
 </head>
 <body>
@@ -739,8 +786,8 @@
                 <h1 class="hero-title">Memory Challenge <br><em>Reimagined.</em></h1>
                 <p class="hero-subtitle">A meticulously crafted memory game that blends organic aesthetics with fluid performance. Designed to sharpen your mind through play.</p>
                 <div class="hero-actions">
-                    <a href="#themes" class="btn-action light-btn" style="box-shadow: 0 15px 35px rgba(139, 195, 74, 0.3);">Launch Experience</a>
-                    <a href="glimpses.html" class="btn-action" style="padding: 22px 40px; border: 2px solid var(--primary); background: transparent; color: var(--primary); box-shadow: 0 0 25px rgba(139, 195, 74, 0.15);">Watch Videos</a>
+                    <a href="#themes" class="btn-action light-btn btn-hero-primary">Launch Experience</a>
+                    <a href="glimpses.html" class="btn-action btn-hero-secondary">Watch Videos</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -751,7 +798,8 @@
                              alt="Card Match Game App Main Menu displayed in a phone mockup"
                              width="1080"
                              height="2340"
-                             style="aspect-ratio: 1080 / 2340; max-width: 320px; width: 100%; height: 100%; display: block;"
+                             loading="eager"
+                             class="hero-phone-img"
                              onload="this.style.display='block'; this.parentElement.classList.remove('image-unavailable');"
                              onerror="this.style.display='none'; this.parentElement.classList.add('image-unavailable');">
                     </div>
@@ -782,43 +830,43 @@
         </section>
 
         <!-- Features Section -->
-        <section class="features" style="text-align: center;">
+        <section class="features features-centered">
             <span class="section-tag">Crafted for Delight</span>
             <h2 class="section-title">Why Players Love It</h2>
 
-            <div class="feature-grid" style="text-align: left; margin-top: 60px;">
+            <div class="feature-grid feature-grid-spaced">
                 <div class="feature-item reveal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); margin-bottom: 20px;"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8a13 13 0 0 1-13 13L11 20z"></path><path d="M9 21c0-4.5 4-4.5 4-9"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8a13 13 0 0 1-13 13L11 20z"></path><path d="M9 21c0-4.5 4-4.5 4-9"></path></svg>
                     <h4>Organic Design</h4>
                     <p>Every element is inspired by nature, from the color palettes to the fluid card animations.</p>
                 </div>
                 <div class="feature-item reveal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); margin-bottom: 20px;"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 15h3"/><path d="M1 9h3"/><path d="M1 15h3"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 15h3"/><path d="M1 9h3"/><path d="M1 15h3"/></svg>
                     <h4>Smart Logic</h4>
                     <p>Advanced difficulty scaling that adapts to your performance across 3x3 to 5x5 grids.</p>
                 </div>
                 <div class="feature-item reveal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); margin-bottom: 20px;"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><circle cx="15" cy="13" r="1"></circle><circle cx="18" cy="11" r="1"></circle><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.105-.017.153L2.01 17.13A2 2 0 0 0 4 19h1.61a2 2 0 0 0 1.962-1.608l.193-.965A2 2 0 0 1 9.728 15h4.544a2 2 0 0 1 1.963 1.427l.193.965A2 2 0 0 0 18.39 19H20a2 2 0 0 0 1.99-1.87l-.675-8.54A4 4 0 0 0 17.32 5z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><circle cx="15" cy="13" r="1"></circle><circle cx="18" cy="11" r="1"></circle><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.105-.017.153L2.01 17.13A2 2 0 0 0 4 19h1.61a2 2 0 0 0 1.962-1.608l.193-.965A2 2 0 0 1 9.728 15h4.544a2 2 0 0 1 1.963 1.427l.193.965A2 2 0 0 0 18.39 19H20a2 2 0 0 0 1.99-1.87l-.675-8.54A4 4 0 0 0 17.32 5z"></path></svg>
                     <h4>Intuitive Gameplay</h4>
                     <p>Simple rules that anyone can learn instantly, yet with endless strategic depth for seasoned players.</p>
                 </div>
                 <div class="feature-item reveal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); margin-bottom: 20px;"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg>
                     <h4>Stunning Aesthetics</h4>
                     <p>Handcrafted visual design with nature-inspired colors that delight your senses with every interaction.</p>
                 </div>
                 <div class="feature-item reveal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); margin-bottom: 20px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                     <h4>Smooth Performance</h4>
                     <p>Lightning-fast interactions and butter-smooth animations for a responsive, satisfying experience.</p>
                 </div>
                 <div class="feature-item reveal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); margin-bottom: 20px;"><circle cx="12" cy="12" r="10"></circle><path d="M12 18a6 6 0 1 0 0-12v12z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><circle cx="12" cy="12" r="10"></circle><path d="M12 18a6 6 0 1 0 0-12v12z"></path></svg>
                     <h4>Dual Themes</h4>
                     <p>Choose between forest darkness or sun-kissed light. Each theme tells its own complete visual story.</p>
                 </div>
                 <div class="feature-item reveal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); margin-bottom: 20px;"><circle cx="12" cy="12" r="10"/><path d="M9 12h6"/><path d="M12 9v6"/><rect x="2" y="2" width="20" height="20" rx="5"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><circle cx="12" cy="12" r="10"/><path d="M9 12h6"/><path d="M12 9v6"/><rect x="2" y="2" width="20" height="20" rx="5"/></svg>
                     <h4>Accessible Design</h4>
                     <p>Thoughtfully designed for everyone with inclusive accessibility standards built throughout.</p>
                 </div>
@@ -831,7 +879,7 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l-7 7 1.4 1.4 4.6-4.6V20h2V7.8l4.6 4.6L19 11z"/></svg>
 </button>
     <footer>
-        <div style="height: 1px; background: var(--border-color); width: 100%; margin-bottom: 40px;"></div>
+        <div class="footer-divider"></div>
         <p class="copyright">&copy; 2026 Card Match Game. All rights reserved.</p>
     </footer>
 

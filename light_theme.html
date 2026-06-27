@@ -575,7 +575,7 @@
                 <div class="card-img-container">
                     <div class="device-frame">
                         <div class="device-screen">
-                            <img onerror="handleImageError(this)" src="light-theme-screenshots/main-menu-screen.png" alt="Start Screen">
+                            <img onerror="handleImageError(this)" src="light-theme-screenshots/main-menu-screen.png" alt="Card Match Game light theme main menu" loading="eager" width="1080" height="2340">
                         </div>
                     </div>
                 </div>
@@ -763,7 +763,7 @@
     <p id="lightbox-title" class="sr-only">Expanded Card Match Game screenshot preview</p>
     <p id="lightbox-description" class="sr-only">Tap the expanded screenshot, tap outside it, press Escape, or use the close button to return to the screenshot gallery.</p>
     <button class="lightbox-close" type="button" aria-label="Close screenshot preview" title="Close preview">&times;</button>
-    <img src="" alt="Expanded Card Match Game screenshot preview">
+    <img src="" alt="">
 </div>
 
 <script>
@@ -783,6 +783,13 @@
         updateScrollToTopVisibility();
 
     // Scroll Reveal Logic
+    // Reduced-motion guard: reveal all elements immediately if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.reveal').forEach(function (el) {
+            el.classList.add('active');
+        });
+    }
+
     const revealElements = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
