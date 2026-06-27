@@ -761,7 +761,7 @@
 </button>
 <div id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" aria-describedby="lightbox-description" hidden>
     <p id="lightbox-title" class="sr-only">Expanded Card Match Game screenshot preview</p>
-    <p id="lightbox-description" class="sr-only">Press Escape or use the close button to return to the screenshot gallery.</p>
+    <p id="lightbox-description" class="sr-only">Tap the expanded screenshot, tap outside it, press Escape, or use the close button to return to the screenshot gallery.</p>
     <button class="lightbox-close" type="button" aria-label="Close screenshot preview" title="Close preview">&times;</button>
     <img src="" alt="Expanded Card Match Game screenshot preview">
 </div>
@@ -870,6 +870,14 @@
 
         lightboxCloseButton.addEventListener('click', event => {
             event.preventDefault();
+            closeLightbox();
+        });
+
+        // Allow a direct tap/click on the expanded screenshot to close the preview.
+        // This provides a reachable one-hand close action on larger mobile screens.
+        lightboxImage.addEventListener('click', event => {
+            event.preventDefault();
+            event.stopPropagation();
             closeLightbox();
         });
 
