@@ -422,6 +422,56 @@
             box-shadow: 0 0 50px rgba(0,0,0,0.8);
         }
 
+
+
+        /* Accessible lightbox controls */
+        #lightbox[hidden] {
+            display: none !important;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.45);
+            color: #fff;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-close:focus-visible {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            outline: 3px solid rgba(255, 255, 255, 0.8);
+            outline-offset: 3px;
+        }
+
+        .card-img-container[role="button"]:focus-visible {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 4px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         footer {
             margin-top: 150px;
             padding: 60px 0;
@@ -522,7 +572,7 @@
         <h2>1. Start Screen</h2>
         <div class="single-card-layout">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)">
+                <div class="card-img-container">
                     <div class="device-frame">
                         <div class="device-screen">
                             <img onerror="handleImageError(this)" src="dark-theme-screenshots/main-menu-screen.png" alt="Start Screen">
@@ -543,31 +593,31 @@
         <h3>Section A: Onboarding</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step1.png" alt="Dark-theme: Step 1: Card Deck Selection" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step1.png" alt="Dark-theme: Step 1: Card Deck Selection" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 1: Card Deck Selection</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step2.png" alt="Dark-theme: Step 2: Difficulty Levels" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step2.png" alt="Dark-theme: Step 2: Difficulty Levels" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 2: Difficulty Levels</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step3.png" alt="Dark-theme: Step 3: Solo Mode Option" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step3.png" alt="Dark-theme: Step 3: Solo Mode Option" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 3: Solo Mode Option</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step4.png" alt="Dark-theme: Step 4: Versus Mode Option" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step4.png" alt="Dark-theme: Step 4: Versus Mode Option" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 4: Versus Mode Option</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step5.png" alt="Dark-theme: Step 5: Play with a Friend" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step5.png" alt="Dark-theme: Step 5: Play with a Friend" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 5: Play with a Friend</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step6.png" alt="Dark-theme: Step 6: Challenge Buddy" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step6.png" alt="Dark-theme: Step 6: Challenge Buddy" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 6: Challenge Buddy</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step7.png" alt="Dark-theme: Step 7: Ready to Play!" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-setup-onboarding-step7.png" alt="Dark-theme: Step 7: Ready to Play!" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 7: Ready to Play!</div></div>
             </div>
         </div>
@@ -575,11 +625,11 @@
         <h3>Section B: Game Modes</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/solo-game-mode.png" alt="Dark-theme: Solo Mode Selection" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/solo-game-mode.png" alt="Dark-theme: Solo Mode Selection" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Solo Mode Selection</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/versus-mode-selected.png" alt="Dark-theme: Versus Mode Selection" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/versus-mode-selected.png" alt="Dark-theme: Versus Mode Selection" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Versus Mode Selection</div></div>
             </div>
         </div>
@@ -592,15 +642,15 @@
         <h3>Section A: Game Board Onboarding</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/Game-board-onboarding-step1.png" alt="Dark-theme: Step 1: How to Play" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/Game-board-onboarding-step1.png" alt="Dark-theme: Step 1: How to Play" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 1: How to Play</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/Game-board-onboarding-step2.png" alt="Dark-theme: Step 2: Make a Match" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/Game-board-onboarding-step2.png" alt="Dark-theme: Step 2: Make a Match" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 2: Make a Match</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/Game-board-onboarding-step3.png" alt="Dark-theme: Step 3: Instant Restart" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/Game-board-onboarding-step3.png" alt="Dark-theme: Step 3: Instant Restart" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 3: Instant Restart</div></div>
             </div>
         </div>
@@ -608,11 +658,11 @@
         <h3>Section B: 3x3 Grid</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/3x3-game-board.png" alt="Dark-theme: 3x3 Initial State" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/3x3-game-board.png" alt="Dark-theme: 3x3 Initial State" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">3x3 Initial State</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/3x3-grid-game-progress.png" alt="Dark-theme: 3x3 Gameplay" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/3x3-grid-game-progress.png" alt="Dark-theme: 3x3 Gameplay" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">3x3 Gameplay</div></div>
             </div>
         </div>
@@ -620,11 +670,11 @@
         <h3>Section C: 4x4 Grid</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/4x4-game-board.png" alt="Dark-theme: 4x4 Initial State" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/4x4-game-board.png" alt="Dark-theme: 4x4 Initial State" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">4x4 Initial State</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/4x4-grid-game-progress.png" alt="Dark-theme: 4x4 Gameplay" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/4x4-grid-game-progress.png" alt="Dark-theme: 4x4 Gameplay" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">4x4 Gameplay</div></div>
             </div>
         </div>
@@ -632,11 +682,11 @@
         <h3>Section D: 5x5 Grid</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/5x5-game-board.png" alt="Dark-theme: 5x5 Initial State" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/5x5-game-board.png" alt="Dark-theme: 5x5 Initial State" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">5x5 Initial State</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/5x5-grid-game-progress.png" alt="Dark-theme: 5x5 Gameplay" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/5x5-grid-game-progress.png" alt="Dark-theme: 5x5 Gameplay" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">5x5 Gameplay</div></div>
             </div>
         </div>
@@ -647,23 +697,23 @@
         <h2>4. Dialog Screens</h2>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/Game-over-dialog-screen.png" alt="Dark-theme: Victory / Game Over" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/Game-over-dialog-screen.png" alt="Dark-theme: Victory / Game Over" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Victory / Game Over</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/Restart-Game-dialog-screen.png" alt="Dark-theme: Restart Confirmation" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/Restart-Game-dialog-screen.png" alt="Dark-theme: Restart Confirmation" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Restart Confirmation</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-restart-snackbar-UI.png" alt="Dark-theme: Snackbar Notifications" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/game-restart-snackbar-UI.png" alt="Dark-theme: Snackbar Notifications" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Snackbar Notifications</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/exit-to-menu-dialog-screen.png" alt="Dark-theme: Menu Navigation" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/exit-to-menu-dialog-screen.png" alt="Dark-theme: Menu Navigation" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Menu Navigation</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/quit-game-dialog-screen.png" alt="Dark-theme: Exit Confirmation" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/quit-game-dialog-screen.png" alt="Dark-theme: Exit Confirmation" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Exit Confirmation</div></div>
             </div>
         </div>
@@ -674,7 +724,7 @@
         <h2>5. Settings</h2>
         <div class="single-card-layout">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/settings-screen.png" alt="Dark-theme: Granular Audio and UI Customization" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/settings-screen.png" alt="Dark-theme: Granular Audio and UI Customization" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Granular Audio and UI Customization</div></div>
             </div>
         </div>
@@ -685,15 +735,15 @@
         <h2>6. About & Credits</h2>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/About-screen-part1.png" alt="Dark-theme: Meet the Creator" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/About-screen-part1.png" alt="Dark-theme: Meet the Creator" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Meet the Creator</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/About-screen-part2.png" alt="Dark-theme: App Information" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/About-screen-part2.png" alt="Dark-theme: App Information" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">App Information</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="dark-theme-screenshots/About-screen-part3.png" alt="Dark-theme: Legal & Privacy" loading="lazy" width="1080" height="2340"></div>
+                <div class="card-img-container"><img onerror="handleImageError(this)" src="dark-theme-screenshots/About-screen-part3.png" alt="Dark-theme: Legal & Privacy" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Legal & Privacy</div></div>
             </div>
         </div>
@@ -709,7 +759,10 @@
 <button class="scroll-to-top" id="scroll-to-top" type="button" aria-label="Scroll to top" title="Scroll to top">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l-7 7 1.4 1.4 4.6-4.6V20h2V7.8l4.6 4.6L19 11z"/></svg>
 </button>
-<div id="lightbox" onclick="this.style.display='none'">
+<div id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" aria-describedby="lightbox-description" hidden>
+    <p id="lightbox-title" class="sr-only">Expanded Card Match Game screenshot preview</p>
+    <p id="lightbox-description" class="sr-only">Press Escape or use the close button to return to the screenshot gallery.</p>
+    <button class="lightbox-close" type="button" aria-label="Close screenshot preview" title="Close preview">&times;</button>
     <img src="" alt="Expanded Card Match Game screenshot preview">
 </div>
 
@@ -730,29 +783,100 @@
         updateScrollToTopVisibility();
 
     // Scroll Reveal Logic
-    const observerOptions = {
-        threshold: 0.1
-    };
+    const revealElements = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+    } else {
+        revealElements.forEach(el => el.classList.add('active'));
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+    // Accessible lightbox logic
+    (() => {
+        const lightbox = document.getElementById('lightbox');
+        if (!lightbox) return;
+
+        const lightboxImage = lightbox.querySelector('img');
+        const lightboxCloseButton = lightbox.querySelector('.lightbox-close');
+        let lastLightboxTrigger = null;
+
+        function getContainer(target) {
+            return target && target.closest ? target.closest('.card-img-container') : null;
+        }
+
+        function openLightbox(container) {
+            const image = container ? container.querySelector('img') : null;
+            if (!image || !image.getAttribute('src')) return;
+
+            lastLightboxTrigger = container;
+            lightboxImage.src = image.currentSrc || image.getAttribute('src');
+            lightboxImage.alt = image.alt || 'Expanded Card Match Game screenshot preview';
+            lightbox.hidden = false;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            lightboxCloseButton.focus();
+        }
+
+        function closeLightbox() {
+            if (lightbox.hidden) return;
+            lightbox.hidden = true;
+            lightbox.style.display = '';
+            lightboxImage.removeAttribute('src');
+            document.body.style.overflow = '';
+            if (lastLightboxTrigger && document.contains(lastLightboxTrigger)) {
+                lastLightboxTrigger.focus();
+            }
+        }
+
+        // Make every screenshot container discoverable and keyboard-operable.
+        document.querySelectorAll('.card-img-container').forEach(container => {
+            const image = container.querySelector('img');
+            if (!image) return;
+            container.setAttribute('role', 'button');
+            container.setAttribute('tabindex', '0');
+            container.setAttribute('aria-label', `Open enlarged preview: ${image.alt || 'Card Match Game screenshot'}`);
+        });
+
+        // Delegation guarantees one consistent handler for every current gallery image.
+        document.addEventListener('click', event => {
+            const container = getContainer(event.target);
+            if (!container || lightbox.contains(container)) return;
+            const image = container.querySelector('img');
+            if (!image) return;
+            event.preventDefault();
+            openLightbox(container);
+        });
+
+        document.addEventListener('keydown', event => {
+            if (!lightbox.hidden && event.key === 'Escape') {
+                event.preventDefault();
+                closeLightbox();
+                return;
+            }
+
+            const container = getContainer(event.target);
+            if (!container || lightbox.contains(container)) return;
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openLightbox(container);
             }
         });
-    }, observerOptions);
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        lightboxCloseButton.addEventListener('click', event => {
+            event.preventDefault();
+            closeLightbox();
+        });
 
-    // Lightbox Logic
-    function openLightbox(container) {
-        const img = container.querySelector('img');
-        if (img && !img.classList.contains('error')) {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.querySelector('img').src = img.src;
-            lightbox.style.display = 'flex';
-        }
-    }
+        lightbox.addEventListener('click', event => {
+            if (event.target === lightbox) closeLightbox();
+        });
+    })();
 
 
     // Improved active link highlighting using scroll positions
