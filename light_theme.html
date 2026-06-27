@@ -466,6 +466,33 @@
             main { padding: 40px 20px; }
             header { margin-bottom: 60px; }
         }
+    
+        /* Respect user motion preferences. */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal,
+            .hero-title,
+            .hero-subtitle,
+            .hero-visual {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -516,31 +543,31 @@
         <h3>Section A: Onboarding</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step1.png" alt="Setup 1"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step1.png" alt="Light-theme:  Step 1: Card Deck Selection" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 1: Card Deck Selection</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step2.png" alt="Setup 2"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step2.png" alt="Light-theme:  Step 2: Difficulty Levels" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 2: Difficulty Levels</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step3.png" alt="Setup 3"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step3.png" alt="Light-theme:  Step 3: Solo Mode Option" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 3: Solo Mode Option</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step4.png" alt="Setup 4"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step4.png" alt="Light-theme:  Step 4: Versus Mode Option" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 4: Versus Mode Option</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step5.png" alt="Setup 5"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step5.png" alt="Light-theme:  Step 5: Play with a Friend" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 5: Play with a Friend</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step6.png" alt="Setup 6"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step6.png" alt="Light-theme:  Step 6: Challenge Buddy" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 6: Challenge Buddy</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step7.png" alt="Setup 7"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-setup-onboarding-step7.png" alt="Light-theme:  Step 7: Ready to Play!" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 7: Ready to Play!</div></div>
             </div>
         </div>
@@ -548,11 +575,11 @@
         <h3>Section B: Game Modes</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/solo-game-mode.png" alt="Solo Mode"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/solo-game-mode.png" alt="Light-theme:  Solo Mode Selection" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Solo Mode Selection</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/versus-game-mode.png" alt="Versus Mode"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/versus-game-mode.png" alt="Light-theme:  Versus Mode Selection" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Versus Mode Selection</div></div>
             </div>
         </div>
@@ -565,15 +592,15 @@
         <h3>Section A: Game Board Onboarding</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/Game-board-onboarding-step1.png" alt="Board 1"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/Game-board-onboarding-step1.png" alt="Light-theme:  Step 1: How to Play" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 1: How to Play</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/Game-board-onboarding-step2.png" alt="Board 2"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/Game-board-onboarding-step2.png" alt="Light-theme:  Step 2: Make a Match" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 2: Make a Match</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/Game-board-onboarding-step3.png" alt="Board 3"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/Game-board-onboarding-step3.png" alt="Light-theme:  Step 3: Instant Restart" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Step 3: Instant Restart</div></div>
             </div>
         </div>
@@ -581,11 +608,11 @@
         <h3>Section B: 3x3 Grid</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/3x3-game-board.png" alt="3x3 Board"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/3x3-game-board.png" alt="Light-theme:  3x3 Initial State" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">3x3 Initial State</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/3x3-grid-game-progress.png" alt="3x3 Progress"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/3x3-grid-game-progress.png" alt="Light-theme:  3x3 Gameplay" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">3x3 Gameplay</div></div>
             </div>
         </div>
@@ -593,11 +620,11 @@
         <h3>Section C: 4x4 Grid</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/4x4-game-board.png" alt="4x4 Board"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/4x4-game-board.png" alt="Light-theme:  4x4 Initial State" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">4x4 Initial State</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/4x4-grid-game-progress.png" alt="4x4 Progress"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/4x4-grid-game-progress.png" alt="Light-theme:  4x4 Gameplay" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">4x4 Gameplay</div></div>
             </div>
         </div>
@@ -605,11 +632,11 @@
         <h3>Section D: 5x5 Grid</h3>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/5x5-game-board.png" alt="5x5 Board"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/5x5-game-board.png" alt="Light-theme:  5x5 Initial State" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">5x5 Initial State</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/5x5-grid-game-progress.png" alt="5x5 Progress"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/5x5-grid-game-progress.png" alt="Light-theme:  5x5 Gameplay" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">5x5 Gameplay</div></div>
             </div>
         </div>
@@ -620,23 +647,23 @@
         <h2>4. Dialog Screens</h2>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/Game-over-dialog-screen.png" alt="Game Over"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/Game-over-dialog-screen.png" alt="Light-theme:  Victory / Game Over" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Victory / Game Over</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/Restart-Game-dialog-screen.png" alt="Restart"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/Restart-Game-dialog-screen.png" alt="Light-theme:  Restart Confirmation" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Restart Confirmation</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-restart-snackbar-UI.png" alt="Snackbar"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/game-restart-snackbar-UI.png" alt="Light-theme:  Snackbar Notifications" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Snackbar Notifications</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/exit-to-menu-dialog-screen.png" alt="Exit"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/exit-to-menu-dialog-screen.png" alt="Light-theme:  Menu Navigation" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Menu Navigation</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/quit-game-dialog-screen.png" alt="Quit"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/quit-game-dialog-screen.png" alt="Light-theme:  Exit Confirmation" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Exit Confirmation</div></div>
             </div>
         </div>
@@ -647,7 +674,7 @@
         <h2>5. Settings</h2>
         <div class="single-card-layout">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/settings-screen.png" alt="Settings"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/settings-screen.png" alt="Light-theme:  Granular Audio and UI Customization" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Granular Audio and UI Customization</div></div>
             </div>
         </div>
@@ -658,15 +685,15 @@
         <h2>6. About & Credits</h2>
         <div class="grid">
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/About-screen-part1.png" alt="About 1"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/About-screen-part1.png" alt="Light-theme:  Meet the Creator" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Meet the Creator</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/About-screen-part2.png" alt="About 2"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/About-screen-part2.png" alt="Light-theme:  App Information" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">App Information</div></div>
             </div>
             <div class="card">
-                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/About-screen-part3.png" alt="About 3"></div>
+                <div class="card-img-container" onclick="openLightbox(this)"><img onerror="handleImageError(this)" src="light-theme-screenshots/About-screen-part3.png" alt="Light-theme:  Legal & Privacy" loading="lazy" width="1080" height="2340"></div>
                 <div class="card-content"><div class="card-title">Legal & Privacy</div></div>
             </div>
         </div>
@@ -683,7 +710,7 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l-7 7 1.4 1.4 4.6-4.6V20h2V7.8l4.6 4.6L19 11z"/></svg>
 </button>
 <div id="lightbox" onclick="this.style.display='none'">
-    <img src="" alt="Lightbox Image">
+    <img src="" alt="Expanded Card Match Game screenshot preview">
 </div>
 
 <script>
@@ -771,7 +798,7 @@
         if (!img.parentNode.querySelector('.img-placeholder')) {
             const placeholder = document.createElement('div');
             placeholder.className = 'img-placeholder';
-            placeholder.innerHTML = '<div><div style="font-size: 2rem; margin-bottom: 10px; opacity: 0.3;">🖼️</div>Screenshot Coming Soon</div>';
+            placeholder.innerHTML = '<div><div style="font-size: 2rem; margin-bottom: 10px; opacity: 0.3;">🖼️</div>Card Match Game App Screen Coming Soon</div>';
             img.parentNode.appendChild(placeholder);
         }
     }

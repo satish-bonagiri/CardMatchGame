@@ -319,6 +319,23 @@
             object-fit: cover;
         }
 
+        /* Keep the phone mockup informative and readable when its showcase image is unavailable. */
+        .phone-screen.image-unavailable {
+            display: grid;
+            place-items: center;
+            padding: 28px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .phone-screen.image-unavailable::after {
+            content: 'Card Match Game showcase image is unavailable.';
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
         /* Themes Section */
         .section-themes {
             padding: 60px 10% 100px;
@@ -651,6 +668,33 @@
             .hero-actions { display: grid; gap: 14px; width: min(100%, 360px); margin-inline: auto; }
             .hero-actions .btn-action { width: 100%; padding: 18px 24px !important; }
         }
+    
+        /* Respect user motion preferences. */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal,
+            .hero-title,
+            .hero-subtitle,
+            .hero-visual {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -704,10 +748,12 @@
                     <div class="phone-screen">
                         <img id="hero-img"
                              src="dark-theme-screenshots/main-menu-screen.png"
-                             alt="Card Match Game App Main Menu Preview"
+                             alt="Card Match Game App Main Menu displayed in a phone mockup"
                              width="1080"
                              height="2340"
-                             style="aspect-ratio: 1080 / 2340; max-width: 320px; width: 100%; height: auto; background-color: #1e1e1e; display: block;">
+                             style="aspect-ratio: 1080 / 2340; max-width: 320px; width: 100%; height: auto; display: block;"
+                             onload="this.style.display='block'; this.parentElement.classList.remove('image-unavailable');"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('image-unavailable');">
                     </div>
                 </div>
             </div>
