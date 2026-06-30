@@ -706,13 +706,13 @@
         </a>
 
         <div class="desktop-nav-actions">
-            <button class="theme-toggle-btn" id="theme-toggle" data-theme-toggle type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode"><svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="moon-body" transform="translate(24 0) scale(-1 1)" d="M20.7 15.25A8.9 8.9 0 0 1 8.75 3.3 9.15 9.15 0 1 0 20.7 15.25Z"/></svg></button>
+            <button class="theme-toggle-btn" id="theme-toggle" data-theme-toggle type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode"><svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="moon-body" d="M20.7 15.25A8.9 8.9 0 0 1 8.75 3.3 9.15 9.15 0 1 0 20.7 15.25Z"/></svg></button>
             <a href="glimpses.html" class="btn-action nav-link-btn">Video Gallery</a>
             <a href="#themes" class="btn-action nav-link-btn">Explore Themes</a>
         </div>
 
         <div class="mobile-header-actions">
-            <button class="theme-toggle-btn" id="mobile-header-theme-toggle" data-theme-toggle type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode"><svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="moon-body" transform="translate(24 0) scale(-1 1)" d="M20.7 15.25A8.9 8.9 0 0 1 8.75 3.3 9.15 9.15 0 1 0 20.7 15.25Z"/></svg></button>
+            <button class="theme-toggle-btn" id="mobile-header-theme-toggle" data-theme-toggle type="button" aria-label="Toggle light and dark theme" title="Toggle Light/Dark Mode"><svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="moon-body" d="M20.7 15.25A8.9 8.9 0 0 1 8.75 3.3 9.15 9.15 0 1 0 20.7 15.25Z"/></svg></button>
             <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
                 <span></span><span></span><span></span>
             </button>
@@ -844,7 +844,7 @@
             const root = document.documentElement;
 
             const sunIcon = '<svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle class="sun-core" cx="12" cy="12" r="4.2"/><path class="sun-ray" d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.28 5.28l1.42 1.42M17.3 17.3l1.42 1.42M5.28 18.72l1.42-1.42M17.3 6.7l1.42-1.42"/></svg>';
-            const moonIcon = '<svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="moon-body" transform="translate(24 0) scale(-1 1)" d="M20 15.6A8.85 8.85 0 0 1 8.4 4 8.85 8.85 0 1 0 20 15.6Z"/></svg>';
+            const moonIcon = '<svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="moon-body" d="M20 15.6A8.85 8.85 0 0 1 8.4 4 8.85 8.85 0 1 0 20 15.6Z"/></svg>';
 
             function currentTheme() {
                 return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
